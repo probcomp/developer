@@ -1,0 +1,18 @@
+version: "3"
+volumes:
+  notebook-data:
+    driver: local
+
+services:
+  notebook:
+    build: .
+    #user: root
+    ports:
+      - 8888:8888
+    volumes:
+      - notebook-data:/home/jovyan/work:rw
+      - ../crosscat:/home/jovyan/crosscat:cached
+    #environment:
+    #  GRANT_SUDO: 'yes'
+    #  NB_UID: ${NB_UID:-1000}
+    #  NB_GID: ${NB_GID:-100}
