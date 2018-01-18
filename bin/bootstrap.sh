@@ -51,5 +51,5 @@ ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
 
 # install the probcomp libraries
 curl -o /tmp/conda_probcomp.txt -L $PROBCOMP_PACKAGES_URL && \
-    conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
+    conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
     --file /tmp/conda_probcomp.txt
