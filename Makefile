@@ -14,8 +14,16 @@ up:        ## Launch the dev environment
 
 .PHONY: up
 up:
-		NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose up
+	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose up
 
 .PHONY: shell
 shell:
 	@docker-compose exec notebook bash
+
+.PHONY: ipython
+ipython:
+	@docker-compose exec notebook bash -c "source activate python2 && ipython"
+
+.PHONY: bayeslite
+bayeslite:
+	@docker-compose exec notebook bash -c "cd bayeslite && python setup.py install"

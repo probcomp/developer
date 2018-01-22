@@ -10,4 +10,5 @@ services:
       - 8888:8888
     volumes:
       - notebook-data:/home/jovyan/work:rw
-    command: start.sh ipython
+      - ../bayeslite:/home/jovyan/bayeslite:rw
+    #command: start.sh ipython
