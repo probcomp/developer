@@ -22,7 +22,7 @@ Clone these yourself or run the bootstrap script to download them automatically.
 
 ## Common Commands
 
-### Start Jupyter
+### Start Jupyter (required for other commands to work)
 
 ```
 make up
