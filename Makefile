@@ -14,7 +14,11 @@ up:        ## Launch the dev environment
 
 .PHONY: up
 up:
+ifdef PROBCOMP_LOCAL_DEV
+	@bash -c "source activate python2 && jupyter notebook"
+else
 	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose up
+endif
 
 .PHONY: shell
 shell:
@@ -22,8 +26,24 @@ shell:
 
 .PHONY: ipython
 ipython:
+ifdef PROBCOMP_LOCAL_DEV
+	@bash -c "source activate python2 && ipython"
+else
 	@docker-compose exec notebook bash -c "source activate python2 && ipython"
+endif
 
 .PHONY: bayeslite
 bayeslite:
-	@docker-compose exec notebook bash -c "cd bayeslite && python setup.py install"
+ifdef PROBCOMP_LOCAL_DEV
+	@bash -c "cd ../bayeslite && python setup.py install"
+else
+	@docker-compose exec notebook bash -c "source activate python2 && cd bayeslite && python setup.py install"
+endif
+
+.PHONY: bayeslite-dev
+bayeslite-dev:
+ifdef PROBCOMP_LOCAL_DEV
+	@conda uninstall -n python2 --quiet --yes bayeslite
+else
+	@docker-compose exec notebook conda uninstall -n python2 --quiet --yes bayeslite
+endif

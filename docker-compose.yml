@@ -5,10 +5,9 @@ volumes:
 
 services:
   notebook:
-    build: .
+    image: probcomp/notebook
     ports:
       - 8888:8888
     volumes:
       - notebook-data:/home/jovyan/work:rw
       - ../bayeslite:/home/jovyan/bayeslite:rw
-    #command: start.sh ipython
