@@ -22,7 +22,7 @@ Clone these yourself or run the bootstrap script to download them automatically.
 
 ## Common Commands
 
-### Bootstrap the local dev environment or reinstall probcomp libraries in docker environment
+### Bootstrap the local dev environment (or reinstall probcomp libraries in docker environment)
 
 ```
 make bootstrap
