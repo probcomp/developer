@@ -43,7 +43,7 @@ endif
 .PHONY: bayeslite
 bayeslite:
 ifdef PROBCOMP_LOCAL_DEV
-	@bash -c "cd ../bayeslite && python setup.py install"
+	@bash -c "source activate python2 && cd ../bayeslite && python setup.py install"
 else
 	@docker-compose exec notebook bash -c "source activate python2 && cd bayeslite && python setup.py install"
 endif
