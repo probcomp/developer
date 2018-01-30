@@ -9,6 +9,12 @@ export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
 ```
 
+Local dev bootstrap scripts also requires the jq utility:
+
+```
+sudo apt-get install -y jq
+```
+
 ## Local copies of repos
 
 The environment assumes a relative path to git clones of the probcomp repos such as:
