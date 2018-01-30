@@ -32,6 +32,14 @@ else
 	@docker-compose exec notebook bash -c "source activate python2 && ipython"
 endif
 
+.PHONY: bootstrap
+bootstrap:
+ifdef PROBCOMP_LOCAL_DEV
+	@bash bin/bootstrap.sh
+else
+	@docker-compose exec notebook bash /home/jovyan/developer/bin/bootstrap.sh
+endif
+
 .PHONY: bayeslite
 bayeslite:
 ifdef PROBCOMP_LOCAL_DEV

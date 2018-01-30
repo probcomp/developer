@@ -10,4 +10,5 @@ services:
       - 8888:8888
     volumes:
       - notebook-data:/home/jovyan/work:rw
-      - ../bayeslite:/home/jovyan/bayeslite:rw
+      - .:/home/jovyan/developer:cached
+      - ../bayeslite:/home/jovyan/bayeslite:cached
