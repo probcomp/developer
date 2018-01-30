@@ -5,6 +5,7 @@
 Makefile commands and the bootstrap.sh script default to docker-based development. To change to local dev, run or add the following to your .bashrc:
 
 ```
+export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
 ```
 
