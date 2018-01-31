@@ -9,7 +9,7 @@ export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
 ```
 
-Local dev bootstrap scripts also requires the jq utility:
+Local dev bootstrap script requires the jq utility:
 
 ```
 sudo apt-get install -y jq
