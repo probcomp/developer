@@ -83,6 +83,10 @@ function installNotebooks {
   #ask "tini not found. install it?"
 #fi
 if [[ -n "${PROBCOMP_LOCAL_DEV}" ]]; then
+  if [[ ! -e "/usr/bin/jq" ]]; then
+    echo "jq not found. please install it."
+    exit 0
+  fi
   if [[ ! -e "${CONDA_DIR}/bin/conda" ]]; then
     ask "conda not found. install it?" && installConda
   fi
