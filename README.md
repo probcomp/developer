@@ -2,6 +2,8 @@
 
 ## Docker vs Local Dev
 
+Developers have the option of chosing a docker-based environment or a local environment on linux. It's recommended that novice devlopers choose the docker environment.
+
 Makefile commands and the bootstrap.sh script default to docker-based development. To change to local dev, run or add the following to your .bashrc:
 
 ```
