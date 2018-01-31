@@ -9,7 +9,8 @@ NB_GID := $(shell id -g)
 .PHONY: default help
 default: help
 
-shell:     ## Run a bash shell inside the app container
+bash:      ## Run a bash shell inside the app container
+shell:     ## Run a bayeslite shell
 up:        ## Launch the dev environment
 
 .PHONY: up
@@ -20,9 +21,17 @@ else
 	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose up
 endif
 
+.PHONY: bash
+bash:
+	@docker-compose exec notebook bash
+
 .PHONY: shell
 shell:
-	@docker-compose exec notebook bash
+ifdef PROBCOMP_LOCAL_DEV
+	@bash -c "source activate python2 && cd ../bayeslite && python shell/scripts/bayeslite -m"
+else
+	@docker-compose exec notebook bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"
+endif
 
 .PHONY: ipython
 ipython:

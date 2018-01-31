@@ -55,6 +55,12 @@ notebook_1  |         http://localhost:8888/?token=b032fbc6928fdaecc3bd7800f1b90
 make ipython
 ```
 
+### Start a bayeslite shell
+
+```
+make shell
+```
+
 ### Enable development mode
 
 When you first setup your devlopment environment or if you restart the docker container, you'll need to enable development mode by first uninstalling the conda package. Run `make <REPO_NAME>-dev` to uninstall the conda package and use your local repo instead:
@@ -71,8 +77,8 @@ Build and install from local sources and re-run to make changes take effect with
 make bayeslite
 ```
 
-### Run a shell inside the docker container
+### Run a bash shell inside the docker container
 
 ```
-make shell
+make bash
 ```
