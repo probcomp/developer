@@ -23,6 +23,9 @@ The environment assumes a relative path to git clones of the probcomp repos such
 ../bayeslite
 ../cgpm
 ../crosscat
+.
+.
+.
 ```
 
 Clone these yourself or run the bootstrap script to download them automatically.
