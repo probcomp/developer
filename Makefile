@@ -16,7 +16,7 @@ up:        ## Launch the dev environment
 .PHONY: up
 up:
 ifdef PROBCOMP_LOCAL_DEV
-	@bash -c "source activate python2 && jupyter notebook"
+	@bash -c "source activate python2 && jupyter notebook --ip=0.0.0.0"
 else
 	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose up
 endif
