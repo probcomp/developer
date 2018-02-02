@@ -64,3 +64,11 @@ ifdef PROBCOMP_LOCAL_DEV
 else
 	@docker-compose exec notebook conda uninstall -n python2 --quiet --yes bayeslite
 endif
+
+.PHONY: bayeslite-test
+bayeslite-test:
+ifdef PROBCOMP_LOCAL_DEV
+	@conda uninstall -n python2 --quiet --yes bayeslite
+else
+	@docker-compose exec notebook bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
+endif
