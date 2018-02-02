@@ -1,7 +1,4 @@
 version: "3"
-volumes:
-  notebook-data:
-    driver: local
 
 services:
   notebook:
@@ -9,6 +6,6 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - notebook-data:/home/jovyan/work:rw
       - .:/home/jovyan/developer:cached
       - ../bayeslite:/home/jovyan/bayeslite:cached
+      - ../workshop-materials/latest-tutorials:/home/jovyan/work:rw
