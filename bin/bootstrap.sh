@@ -9,6 +9,9 @@ PROBCOMP_EDGE_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/
 PROBCOMP_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp.txt"
 PYTHON2_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_python2.txt"
 
+export MPLBACKEND=Agg
+export XDG_CACHE_HOME=$HOME/.cache/
+
 function ask() {
     echo -e -n "$@" '[y/n] ' ; read ans
     case "$ans" in
@@ -53,13 +56,27 @@ function installJupyter {
 }
 
 function installPython2 {
+  # remove existing env if it exists
+  conda remove --name python2 --all --yes --quiet >/dev/null 2>&1
   # Install Python 2 packages
   curl -o /tmp/conda_python2.txt -L $PYTHON2_PACKAGES_URL && \
       conda create --quiet --yes -p $CONDA_DIR/envs/python2 python=2.7 \
-      --file /tmp/conda_python2.txt
+      --file /tmp/conda_python2.txt && \
+      conda remove -n python2 --quiet --yes --force qt pyqt
   # Add shortcuts to distinguish pip for python2 and python3 envs
-  ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
-      ln -s $CONDA_DIR/bin/pip $CONDA_DIR/bin/pip3
+  ln -sf $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
+      ln -sf $CONDA_DIR/bin/pip $CONDA_DIR/bin/pip3
+  # Import matplotlib the first time to build the font cache.
+  $CONDA_DIR/envs/python2/bin/python -c "import matplotlib.pyplot"
+
+  # Install Python 2 kernel spec globally to avoid permission problems when NB_UID
+  # switching at runtime and to allow the notebook server running out of the root
+  # environment to find it. Also, activate the python2 environment upon kernel
+  # launch.
+  sudo bash -c "pip install kernda --no-cache && \
+      $CONDA_DIR/envs/python2/bin/python -m ipykernel install && \
+      kernda -o -y /usr/local/share/jupyter/kernels/python2/kernel.json && \
+      pip uninstall kernda -y"
 }
 
 function installProbcomp {
@@ -68,11 +85,13 @@ function installProbcomp {
     curl -o /tmp/conda_probcomp.txt -L $PROBCOMP_EDGE_PACKAGES_URL && \
         conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
         --file /tmp/conda_probcomp.txt && \
+        conda remove -n python2 --quiet --yes --force qt pyqt && \
         return 0
 
   curl -o /tmp/conda_probcomp.txt -L $PROBCOMP_PACKAGES_URL && \
       conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
-      --file /tmp/conda_probcomp.txt
+      --file /tmp/conda_probcomp.txt && \
+      conda remove -n python2 --quiet --yes --force qt pyqt
 }
 
 function installNotebooks {
@@ -95,10 +114,7 @@ if [[ -n "${PROBCOMP_LOCAL_DEV}" ]]; then
     ask "jupyter notebook not installed. install it?" && installJupyter
   fi
 
-  conda list -n python2 >/dev/null
-  if [[ ! $? == 0 ]]; then
-    ask "python2 environment not installed. install it?" && installPython2
-  fi
+  ask "(re)install python2 environment?" && installPython2
 
   if [[ ! -e "./work" ]]; then
     ask "example notebooks not found. install them?" && installNotebooks

@@ -7,8 +7,10 @@ Developers have the option of chosing a docker-based environment or a local envi
 Makefile commands and the bootstrap.sh script default to docker-based development. To change to local dev, run or add the following to your .bashrc:
 
 ```
+export MPLBACKEND=Agg
 export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
+source activate python2
 ```
 
 Local dev bootstrap script requires the jq utility:
