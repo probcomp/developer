@@ -82,13 +82,13 @@ function installPython2 {
 function installProbcomp {
   # install the probcomp libraries
   ask "use edge packages?" && \
-    curl -o /tmp/conda_probcomp.txt -L $PROBCOMP_EDGE_PACKAGES_URL && \
+    wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
         conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
         --file /tmp/conda_probcomp.txt && \
         conda remove -n python2 --quiet --yes --force qt pyqt && \
         return 0
 
-  curl -o /tmp/conda_probcomp.txt -L $PROBCOMP_PACKAGES_URL && \
+  wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
       conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
       --file /tmp/conda_probcomp.txt && \
       conda remove -n python2 --quiet --yes --force qt pyqt
