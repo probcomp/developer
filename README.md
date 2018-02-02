@@ -10,6 +10,7 @@ Makefile commands and the bootstrap.sh script default to docker-based developmen
 export MPLBACKEND=Agg
 export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
+export XDG_CACHE_HOME=$HOME/.cache/
 source activate python2
 ```
 
