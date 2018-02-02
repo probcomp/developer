@@ -30,8 +30,7 @@ shell:
 ifdef PROBCOMP_LOCAL_DEV
 	@bash -c "source activate python2 && cd ../bayeslite && python shell/scripts/bayeslite -m"
 else
-	#@docker-compose exec notebook bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"
-	@docker-compose exec notebook bash -c "python bayeslite/shell/scripts/bayeslite -m"
+	@docker-compose exec notebook bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"
 endif
 
 .PHONY: ipython
