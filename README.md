@@ -85,6 +85,14 @@ Build and install from local sources and re-run to make changes take effect with
 make bayeslite
 ```
 
+### Running tests
+
+Run a repo's tests with `make <REPO_NAME>-test`:
+
+```
+make bayeslite-test
+```
+
 ### Run a bash shell inside the docker container
 
 ```
