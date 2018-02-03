@@ -28,7 +28,7 @@ The environment assumes a relative path to git clones of the probcomp repos such
 ../bayeslite
 ../cgpm
 ../crosscat
-.
+../workshop-materials
 .
 .
 ```
@@ -71,7 +71,7 @@ make shell
 
 ### Enable development mode
 
-When you first setup your devlopment environment or if you restart the docker container, you'll need to enable development mode by first uninstalling the conda package. Run `make <REPO_NAME>-dev` to uninstall the conda package and use your local repo instead:
+When you first setup your development environment or if you restart the docker container, you'll need to enable development mode by first uninstalling the conda package. Run `make <REPO_NAME>-dev` to uninstall the conda package and use your local repo instead:
 
 ```
 make bayeslite-dev
