@@ -12,6 +12,7 @@ export PATH=/opt/conda/bin:$PATH
 export PROBCOMP_LOCAL_DEV=yes
 export XDG_CACHE_HOME=$HOME/.cache/
 source activate python2
+alias pytest=py.test
 ```
 
 Local dev bootstrap script requires the jq utility:
