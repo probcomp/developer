@@ -124,7 +124,7 @@ function installNotebooks {
 
 for i in ${PROBCOMP_REPOS}; do
   if [[ ! -e "../${i}" ]]; then
-    ask "${i} repo not found at ../${i}. clone it?" && git clone git@github.com:probcomp/${i}.git ../
+    ask "${i} repo not found at ../${i}. clone it?" && git clone https://github.com/probcomp/${i}.git ../
   fi
 done
 
