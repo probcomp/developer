@@ -8,4 +8,4 @@ services:
     volumes:
       - .:/home/jovyan/developer:cached
       - ../bayeslite:/home/jovyan/bayeslite:cached
-      - ../workshop-materials/latest-tutorials:/home/jovyan/work:rw
+      - ../workshop-materials/latest-tutorials:/home/jovyan/work:cached
