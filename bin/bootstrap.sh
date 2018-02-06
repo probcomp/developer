@@ -7,10 +7,19 @@ MINICONDA_VERSION=4.3.30
 PATH=$CONDA_DIR/bin:$PATH
 PROBCOMP_EDGE_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp_edge.txt"
 PROBCOMP_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp.txt"
+PROBCOMP_REPOS="bayeslite cgpm crosscat iventure workshop-materials"
 PYTHON2_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_python2.txt"
 
 export MPLBACKEND=Agg
 export XDG_CACHE_HOME=$HOME/.cache/
+
+## local dev is unsupported but you can use it by adding the following to your bashrc
+#export MPLBACKEND=Agg
+#export PATH=/opt/conda/bin:$PATH
+#export PROBCOMP_LOCAL_DEV=yes
+#export XDG_CACHE_HOME=$HOME/.cache/
+#source activate python2
+#alias pytest=py.test
 
 function ask() {
     echo -e -n "$@" '[y/n] ' ; read ans
@@ -79,7 +88,7 @@ function installPython2 {
       pip uninstall kernda -y"
 }
 
-function installProbcomp {
+function installProbcompLocal {
   # install the probcomp libraries
   ask "use edge packages?" && \
     wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
@@ -94,13 +103,35 @@ function installProbcomp {
       conda remove -n python2 --quiet --yes --force qt pyqt
 }
 
+function installProbcompDocker {
+  # install the probcomp libraries
+  ask "use edge packages?" && \
+    docker-compose exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
+        conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
+        --file /tmp/conda_probcomp.txt && \
+        conda remove -n python2 --quiet --yes --force qt pyqt" && \
+        return 0
+
+  wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
+      docker-compose exec notebook bash -c "conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
+      --file /tmp/conda_probcomp.txt && \
+      conda remove -n python2 --quiet --yes --force qt pyqt"
+}
+
 function installNotebooks {
   mkdir work && wget --progress=dot:giga -O - https://${CONTENT_URL} | gunzip -c | tar xf - -C work
 }
 
+for i in ${PROBCOMP_REPOS}; do
+  if [[ ! -e "../${i}" ]]; then
+    ask "${i} repo not found at ../${i}. clone it?" && git clone git@github.com:probcomp/${i}.git ../
+  fi
+done
+
 #if [[ ! -e "/usr/local/bin/tini" ]]; then
   #ask "tini not found. install it?"
 #fi
+
 if [[ -n "${PROBCOMP_LOCAL_DEV}" ]]; then
   if [[ ! -e "/usr/bin/jq" ]]; then
     echo "jq not found. please install it."
@@ -119,6 +150,7 @@ if [[ -n "${PROBCOMP_LOCAL_DEV}" ]]; then
   if [[ ! -e "./work" ]]; then
     ask "example notebooks not found. install them?" && installNotebooks
   fi
+  ask "(re)install probcomp packages?" && installProbcompLocal
 fi
 
-ask "(re)install probcomp packages?" && installProbcomp
+ask "(re)install probcomp packages? (notebook container must be running)" && installProbcompDocker

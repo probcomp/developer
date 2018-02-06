@@ -1,26 +1,5 @@
 # developer
 
-## Docker vs Local Dev
-
-Developers have the option of chosing a docker-based environment or a local environment on linux. It's recommended that novice devlopers choose the docker environment.
-
-Makefile commands and the bootstrap.sh script default to docker-based development. To change to local dev, run or add the following to your .bashrc:
-
-```
-export MPLBACKEND=Agg
-export PATH=/opt/conda/bin:$PATH
-export PROBCOMP_LOCAL_DEV=yes
-export XDG_CACHE_HOME=$HOME/.cache/
-source activate python2
-alias pytest=py.test
-```
-
-Local dev bootstrap script requires the jq utility:
-
-```
-sudo apt-get install -y jq
-```
-
 ## Local copies of repos
 
 The environment assumes a relative path to git clones of the probcomp repos such as:
