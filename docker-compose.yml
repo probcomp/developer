@@ -8,4 +8,7 @@ services:
     volumes:
       - .:/home/jovyan/developer:cached
       - ../bayeslite:/home/jovyan/bayeslite:cached
+      - ../cgpm:/home/jovyan/cgpm:cached
+      - ../crosscat:/home/jovyan/crosscat:cached
+      - ../iventure:/home/jovyan/iventure:cached
       - ../workshop-materials/latest-tutorials:/home/jovyan/work:cached

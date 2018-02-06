@@ -112,8 +112,8 @@ function installProbcompDocker {
         conda remove -n python2 --quiet --yes --force qt pyqt" && \
         return 0
 
-  wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
-      docker-compose exec notebook bash -c "conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
+  docker-compose exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
+      conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
       --file /tmp/conda_probcomp.txt && \
       conda remove -n python2 --quiet --yes --force qt pyqt"
 }
