@@ -33,6 +33,14 @@ else
 	@docker-compose exec notebook bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"
 endif
 
+.PHONY: install-docker
+install-docker:
+	@curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
+
+.PHONY: install-docker
+install-docker-compose:
+	@curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+
 .PHONY: ipython
 ipython:
 ifdef PROBCOMP_LOCAL_DEV

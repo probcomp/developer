@@ -78,3 +78,15 @@ make bayeslite-test
 ```
 make bash
 ```
+
+### Install docker
+
+```
+make install-docker
+```
+
+### Install docker-compose
+
+```
+make install-docker-compose
+```
