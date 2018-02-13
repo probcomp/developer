@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 
 services:
   notebook:
@@ -6,9 +6,9 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - .:/home/jovyan/developer:cached
-      - ../bayeslite:/home/jovyan/bayeslite:cached
-      - ../cgpm:/home/jovyan/cgpm:cached
-      - ../crosscat:/home/jovyan/crosscat:cached
-      - ../iventure:/home/jovyan/iventure:cached
-      - ../workshop-materials/latest-tutorials:/home/jovyan/work:cached
+      - .:/home/jovyan/developer:rw
+      - ../bayeslite:/home/jovyan/bayeslite:rw
+      - ../cgpm:/home/jovyan/cgpm:rw
+      - ../crosscat:/home/jovyan/crosscat:rw
+      - ../iventure:/home/jovyan/iventure:rw
+      - ../workshop-materials/latest-tutorials:/home/jovyan/work:rw
