@@ -161,3 +161,5 @@ The default D4M resource limits are too low for the developer playground. It's r
 ### Sharing the same Docker host with multiple developers
 
 Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port in docker-compose.yml.
+
+Additionally, the Makefile automatically prepends your username to container names to avoid namespace collisions.

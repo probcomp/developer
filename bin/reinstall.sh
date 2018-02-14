@@ -16,13 +16,13 @@ function ask() {
 function installProbcompDocker {
   # install the probcomp libraries
   ask "use edge packages?" && \
-    docker-compose exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
+    docker-compose -p ${USER} exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
         conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
         --file /tmp/conda_probcomp.txt && \
         conda remove -n python2 --quiet --yes --force qt pyqt" && \
         return 0
 
-  docker-compose exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
+  docker-compose -p ${USER} exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
       conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
       --file /tmp/conda_probcomp.txt && \
       conda remove -n python2 --quiet --yes --force qt pyqt"
