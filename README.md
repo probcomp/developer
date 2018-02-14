@@ -1,5 +1,7 @@
+## Probcomp Developer Playground
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
+- [Probcomp Developer Playground](#probcomp-developer-playground)
 - [Overview](#overview)
 - [Installation](#installation)
 	- [Bootstrapping Your Environment](#bootstrapping-your-environment)
