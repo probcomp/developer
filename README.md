@@ -156,7 +156,7 @@ make reinstall
 
 The default D4M resource limits are too low for the developer playground. It's recommended that you allocate at least 8GB of RAM and all CPU cores to Docker. Any unused resources will still be available to OSX.
 
-![resources](https://github.com/probcomp/developer/raw/master/images/resources.png)
+<img src="https://github.com/probcomp/developer/blob/master/images/resources.png" width="250">
 
 ### Sharing the same Docker host with multiple developers
 
