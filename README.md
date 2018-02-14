@@ -25,7 +25,7 @@
 <!-- /TOC -->
 ## Overview
 
-This repository contains the developer playground/workstation environment for the [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/) [probcomp/notebook](https://hub.docker.com/r/probcomp/notebook/) image. It contains the full probcomp software stack in addition to enabling active development on the various repos.
+This repository contains the developer playground/workstation environment for the [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/) [probcomp/notebook](https://hub.docker.com/r/probcomp/notebook/) image. It contains the full probcomp software stack in addition to enabling active development on the various repositories including [bayeslite](https://github.com/probcomp/bayeslite), [cgpm](https://github.com/probcomp/cgpm), [crosscat](https://github.com/probcomp/crosscat), [iventure](https://github.com/probcomp/iventure) and [venturecxx](https://github.com/probcomp/Venturecxx).
 
 ## Installation
 
