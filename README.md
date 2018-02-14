@@ -1,92 +1,163 @@
-# developer
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-## Local copies of repos
+	- [Overview](#overview)
+	- [Installation](#installation)
+		- [Bootstrapping Your Environment](#bootstrapping-your-environment)
+		- [Starting Your Environment](#starting-your-environment)
+		- [Making Local Changes Take Effect](#making-local-changes-take-effect)
+			- [Enable Development Mode](#enable-development-mode)
+			- [Build/Install](#buildinstall)
+	- [Running Tests](#running-tests)
+		- [Testing Locally](#testing-locally)
+		- [Testing on Travis](#testing-on-travis)
+	- [Releases](#releases)
+		- [Releasing Conda Packages](#releasing-conda-packages)
+		- [Releasing the Docker Image](#releasing-the-docker-image)
+		- [Common Commands](#common-commands)
+			- [Start a bash shell](#start-a-bash-shell)
+			- [Start an ipython shell](#start-an-ipython-shell)
+			- [Pull the latest version of the image (always try this first if you're having issues)](#pull-the-latest-version-of-the-image-always-try-this-first-if-youre-having-issues)
+			- [Reinstalling the probcomp conda packages](#reinstalling-the-probcomp-conda-packages)
+		- [Docker Tips](#docker-tips)
+			- [Increasing D4M Resources](#increasing-d4m-resources)
+			- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
 
-The environment assumes a relative path to git clones of the probcomp repos such as:
+<!-- /TOC -->
+## Overview
+
+This repository contains the developer playground/workstation environment for the [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/) [probcomp/notebook](https://hub.docker.com/r/probcomp/notebook/) image. It contains the full probcomp software stack in addition to enabling active development on the various repos.
+
+## Installation
+
+The docker image and commands in this documentation are tested with docker version `17.12.0-ce` and docker-compose version `1.8.0`. We recommend using these minimum versions.
+
+### Bootstrapping Your Environment
+
+The playground depends on local copies of various probcomp repos in a relative path to this directory. See the [docker-compose.yml](https://github.com/probcomp/developer/blob/master/docker-compose.yml) file for the full list or run the `make bootstrap` command:
 
 ```
-../bayeslite
-../cgpm
-../crosscat
-../workshop-materials
+$ make bootstrap
+bayeslite repo not found at ../bayeslite. cloning...
+Cloning into '../bayeslite'...
+cgpm repo not found at ../cgpm. cloning...
+Cloning into '../cgpm'...
+crosscat repo not found at ../crosscat. cloning...
+Cloning into '../crosscat'
 .
 .
 ```
 
-Clone these yourself or run the bootstrap script to download them automatically.
+### Starting Your Environment
 
-## Common Commands
-
-### Bootstrap the local dev environment (or reinstall probcomp libraries in docker environment)
+Start your environment with the `make up` command. Other functionality in this documentation depends on the notebook container being running. Paste the URL from the output into your browser to access the jupyter environment and the tutorial notebooks.
 
 ```
-make bootstrap
-```
-
-### Start Jupyter (required for other commands to work)
-
-```
-make up
-```
-
-Output will show you a local URL to access jupyter:
-
-```
+$ make up
+notebook_1  | Execute the command: jupyter notebook
+notebook_1  | [I 07:20:25.408 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+notebook_1  | [W 07:20:25.630 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+notebook_1  | [I 07:20:25.636 NotebookApp] Serving notebooks from local directory: /home/jovyan
+notebook_1  | [I 07:20:25.636 NotebookApp] 0 active kernels
+notebook_1  | [I 07:20:25.636 NotebookApp] The Jupyter Notebook is running at:
+notebook_1  | [I 07:20:25.636 NotebookApp] http://[all ip addresses on your system]:8888/?token=cd76eccc16179d46ef93ff866f318940a20b41a9883c7106
+notebook_1  | [I 07:20:25.636 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+notebook_1  | [C 07:20:25.637 NotebookApp]
+notebook_1  |
 notebook_1  |     Copy/paste this URL into your browser when you connect for the first time,
 notebook_1  |     to login with a token:
-notebook_1  |         http://localhost:8888/?token=b032fbc6928fdaecc3bd7800f1b90f36a5a4ed99d5c7d59a
+notebook_1  |         http://localhost:8888/?token=cd76eccc16179d46ef93ff866f318940a20b41a9883c7106
 ```
 
-### Start ipython
+### Making Local Changes Take Effect
 
-```
-make ipython
-```
+To actively develop against one of the [probcomp repos](https://github.com/probcomp), you'll first need to enable development mode for the repo in question and then run the requisite make command whenever you make changes. The instructions below assume active development on the [bayeslite](https://github.com/probcomp/bayeslite) repo but this playground environment supports all of the other probcomp public repos as well.
 
-### Start a bayeslite shell
+#### Enable Development Mode
 
-```
-make shell
-```
+For the given repo you wish to actively develop against, you'll need to enable development mode for it anytime your notebook container is restarted. This uninstalls the installed conda package and allows you to override it with local sources.
 
-### Enable development mode
-
-When you first setup your development environment or if you restart the docker container, you'll need to enable development mode by first uninstalling the conda package. Run `make <REPO_NAME>-dev` to uninstall the conda package and use your local repo instead:
+Run `make <REPO_NAME>-dev` to enable development mode:
 
 ```
 make bayeslite-dev
 ```
 
-### Installing and/or making local changes take effect
+#### Build/Install
 
-Build and install from local sources and re-run to make changes take effect with `make <REPO_NAME>`:
+Build and install from local sources with `make <REPO_NAME>` to make your changes take effect:
 
 ```
 make bayeslite
 ```
 
-### Running tests
+## Running Tests
 
-Run a repo's tests with `make <REPO_NAME>-test`:
+### Testing Locally
+
+Run a repo's test suite with `make <REPO_NAME>-test`:
 
 ```
 make bayeslite-test
 ```
 
-### Run a bash shell inside the docker container
+### Testing on Travis
+
+[Travis test runs](https://travis-ci.org/probcomp/) can be run automatically by opening a PR against any of the probcomp repos. Additionally, tests automatically run every 24 hours against the master branch to give insight into test stability.
+
+## Releases
+
+### Releasing Conda Packages
+
+Releasing software to the [probcomp anaconda.org channel](https://anaconda.org/probcomp/) occurs automatically when any of the following occurs. The conda label of the package is determined by the event type:
+
+* Adding a tag to master (releases a `main` package)
+* Committing or merging a PR to master (releases an `edge` package)
+* Adding a tag to a non-master branch (releases a `dev` package)
+
+`main` packages are typically incorporated into the Dockerfile while `edge` packages ensure integration tests against other repos pass and `dev` packages are used for arbitrary additional functionality or testing.
+
+### Releasing the Docker Image
+
+The `probcomp/notebook:latest` image is automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by adding a tag to the master branch.
+
+Caveat: unfortunately builds are not currently triggered automatically (due to a Docker Hub bug) and must be manually triggered in the [hub dashboard](https://hub.docker.com/r/probcomp/notebook/~/settings/automated-builds/).
+
+### Common Commands
+
+#### Start a bash shell
 
 ```
 make bash
 ```
 
-### Install docker
+#### Start an ipython shell
 
 ```
-make install-docker
+make ipython
 ```
 
-### Install docker-compose
+#### Pull the latest version of the image (always try this first if you're having issues)
 
 ```
-make install-docker-compose
+docker-compose pull
 ```
+
+#### Reinstalling the probcomp conda packages
+
+This effectively resets your environment by reinstalling the packages. Effectively the same thing as removing and recreating the container:
+
+```
+make reinstall
+```
+
+### Docker Tips
+
+#### Increasing D4M Resources
+
+The default D4M resource limits are too low for the developer playground. It's recommended that you allocate at least 8GB of RAM and all CPU cores to Docker. Any unused resources will still be available to OSX.
+
+![resources](https://github.com/probcomp/developer/raw/master/images/resources.png)
+
+#### Sharing the same Docker host with multiple developers
+
+Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port.
