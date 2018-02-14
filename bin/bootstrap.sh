@@ -7,7 +7,7 @@ MINICONDA_VERSION=4.3.30
 PATH=$CONDA_DIR/bin:$PATH
 PROBCOMP_EDGE_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp_edge.txt"
 PROBCOMP_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp.txt"
-PROBCOMP_REPOS="bayeslite cgpm crosscat iventure workshop-materials"
+PROBCOMP_REPOS="bayeslite cgpm crosscat iventure notebook Venturecxx"
 PYTHON2_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_python2.txt"
 
 export MPLBACKEND=Agg
