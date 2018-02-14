@@ -144,7 +144,7 @@ docker-compose pull
 
 ### Reinstalling the probcomp conda packages
 
-This effectively resets your environment by reinstalling the packages. Effectively the same thing as removing and recreating the container:
+Reset your environment by reinstalling the packages. Effectively the same thing as removing and recreating the container. You can optionally install `edge` versions of packages:
 
 ```
 make reinstall
