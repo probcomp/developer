@@ -18,6 +18,7 @@
 	- [Start an ipython shell](#start-an-ipython-shell)
 	- [Pull the latest version of the image (always try this first if you're having issues)](#pull-the-latest-version-of-the-image-always-try-this-first-if-youre-having-issues)
 	- [Reinstalling the probcomp conda packages](#reinstalling-the-probcomp-conda-packages)
+	- [Stop and remove the notebook container](#stop-and-remove-the-notebook-container)
 - [Docker Tips](#docker-tips)
 	- [Increasing D4M Resources](#increasing-d4m-resources)
 	- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
@@ -148,6 +149,12 @@ Reset your environment by reinstalling the packages. Effectively the same thing 
 
 ```
 make reinstall
+```
+
+### Stop and remove the notebook container
+
+```
+make down
 ```
 
 ## Docker Tips
