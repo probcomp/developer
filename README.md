@@ -13,14 +13,14 @@
 - [Releases](#releases)
 	- [Releasing Conda Packages](#releasing-conda-packages)
 	- [Releasing the Docker Image](#releasing-the-docker-image)
-	- [Common Commands](#common-commands)
-		- [Start a bash shell](#start-a-bash-shell)
-		- [Start an ipython shell](#start-an-ipython-shell)
-		- [Pull the latest version of the image (always try this first if you're having issues)](#pull-the-latest-version-of-the-image-always-try-this-first-if-youre-having-issues)
-		- [Reinstalling the probcomp conda packages](#reinstalling-the-probcomp-conda-packages)
-	- [Docker Tips](#docker-tips)
-		- [Increasing D4M Resources](#increasing-d4m-resources)
-		- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
+- [Common Commands](#common-commands)
+	- [Start a bash shell](#start-a-bash-shell)
+	- [Start an ipython shell](#start-an-ipython-shell)
+	- [Pull the latest version of the image (always try this first if you're having issues)](#pull-the-latest-version-of-the-image-always-try-this-first-if-youre-having-issues)
+	- [Reinstalling the probcomp conda packages](#reinstalling-the-probcomp-conda-packages)
+- [Docker Tips](#docker-tips)
+	- [Increasing D4M Resources](#increasing-d4m-resources)
+	- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
 
 <!-- /TOC -->
 ## Overview
@@ -122,27 +122,27 @@ The `probcomp/notebook:latest` image is automatically built on any commit to the
 
 Caveat: unfortunately builds are not currently triggered automatically (due to a Docker Hub bug) and must be manually triggered in the [hub dashboard](https://hub.docker.com/r/probcomp/notebook/~/settings/automated-builds/).
 
-### Common Commands
+## Common Commands
 
-#### Start a bash shell
+### Start a bash shell
 
 ```
 make bash
 ```
 
-#### Start an ipython shell
+### Start an ipython shell
 
 ```
 make ipython
 ```
 
-#### Pull the latest version of the image (always try this first if you're having issues)
+### Pull the latest version of the image (always try this first if you're having issues)
 
 ```
 docker-compose pull
 ```
 
-#### Reinstalling the probcomp conda packages
+### Reinstalling the probcomp conda packages
 
 This effectively resets your environment by reinstalling the packages. Effectively the same thing as removing and recreating the container:
 
@@ -150,14 +150,14 @@ This effectively resets your environment by reinstalling the packages. Effective
 make reinstall
 ```
 
-### Docker Tips
+## Docker Tips
 
-#### Increasing D4M Resources
+### Increasing D4M Resources
 
 The default D4M resource limits are too low for the developer playground. It's recommended that you allocate at least 8GB of RAM and all CPU cores to Docker. Any unused resources will still be available to OSX.
 
 ![resources](https://github.com/probcomp/developer/raw/master/images/resources.png)
 
-#### Sharing the same Docker host with multiple developers
+### Sharing the same Docker host with multiple developers
 
-Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port.
+Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port in docker-compose.yml.
