@@ -43,10 +43,10 @@ reinstall:
 ## bayeslite
 .PHONY: bayeslite
 bayeslite:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo -E bash -c "source activate python2 && cd bayeslite && python setup.py install"'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo bash -c "source activate python2 && cd bayeslite && python setup.py install"'
 .PHONY: bayeslite-dev
 bayeslite-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo -E /opt/conda/bin/conda uninstall -n python2 --quiet --yes bayeslite'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo conda uninstall -n python2 --quiet --yes bayeslite'
 .PHONY: bayeslite-test
 bayeslite-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k \"not __ci_\""'
