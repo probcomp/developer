@@ -19,7 +19,7 @@ up:
 
 .PHONY: down
 down:
-	@docker-compose -p ${USER} down
+	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose -p ${USER} down
 
 .PHONY: bash
 bash:
