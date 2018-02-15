@@ -140,7 +140,7 @@ make ipython
 ### Pull the latest version of the image (always try this first if you're having issues)
 
 ```
-docker-compose pull
+make pull
 ```
 
 ### Reinstalling the probcomp conda packages

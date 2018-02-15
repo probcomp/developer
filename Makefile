@@ -20,6 +20,10 @@ up:
 down:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} down
 
+.PHONY: pull
+pull:
+	@NB_UID=${NB_UID} docker-compose pull
+
 .PHONY: bash
 bash:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh bash
