@@ -26,7 +26,7 @@ pull:
 
 .PHONY: bash
 bash:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh bash
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan -s
 
 .PHONY: shell
 shell:
