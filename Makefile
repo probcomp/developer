@@ -3,7 +3,6 @@ SHELL := /bin/bash
 
 # env vars
 NB_UID := $(shell id -u)
-NB_GID := $(shell id -g)
 
 # Default command and help messages
 .PHONY: default help
@@ -15,23 +14,23 @@ up:        ## Launch the dev environment
 
 .PHONY: up
 up:
-	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose -p ${USER} up
+	@NB_UID=${NB_UID} docker-compose -p ${USER} up
 
 .PHONY: down
 down:
-	@NB_UID=${NB_UID} NB_GID=${NB_GID} docker-compose -p ${USER} down
+	@NB_UID=${NB_UID} docker-compose -p ${USER} down
 
 .PHONY: bash
 bash:
-	@docker-compose -p ${USER} exec notebook bash
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh bash
 
 .PHONY: shell
 shell:
-	@docker-compose -p ${USER} exec notebook bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"'
 
 .PHONY: ipython
 ipython:
-	@docker-compose -p ${USER} exec notebook bash -c "source activate python2 && ipython"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && ipython"'
 
 .PHONY: bootstrap
 bootstrap:
@@ -44,13 +43,13 @@ reinstall:
 ## bayeslite
 .PHONY: bayeslite
 bayeslite:
-	@docker-compose -p ${USER} exec notebook bash -c "source activate python2 && cd bayeslite && python setup.py install"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo -E bash -c "source activate python2 && cd bayeslite && python setup.py install"'
 .PHONY: bayeslite-dev
 bayeslite-dev:
-	@docker-compose -p ${USER} exec notebook conda uninstall -n python2 --quiet --yes bayeslite
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo -E /opt/conda/bin/conda uninstall -n python2 --quiet --yes bayeslite'
 .PHONY: bayeslite-test
 bayeslite-test:
-	@docker-compose -p ${USER} exec notebook bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k \"not __ci_\""'
 
 ## cgpm
 .PHONY: cgpm
