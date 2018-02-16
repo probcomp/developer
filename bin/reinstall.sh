@@ -5,6 +5,8 @@ PROBCOMP_EDGE_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/
 PROBCOMP_PACKAGES_URL="https://raw.githubusercontent.com/probcomp/notebook/master/files/conda_probcomp.txt"
 PROBCOMP_REPOS="bayeslite cgpm crosscat iventure notebook Venturecxx"
 
+export NB_UID=$(id -u)
+
 function ask() {
     echo -e -n "$@" '[y/n] ' ; read ans
     case "$ans" in

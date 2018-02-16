@@ -5,6 +5,10 @@ services:
     image: probcomp/notebook
     ports:
       - 8888:8888
+    user: root
+    environment:
+      GRANT_SUDO: 'yes'
+      NB_UID: ${NB_UID}
     volumes:
       - .:/home/jovyan/developer:rw
       - ../bayeslite:/home/jovyan/bayeslite:rw
