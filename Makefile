@@ -9,7 +9,6 @@ NB_UID := $(shell id -u)
 default: help
 
 bash:      ## Run a bash shell inside the app container
-shell:     ## Run a bayeslite shell
 up:        ## Launch the dev environment
 
 .PHONY: up
@@ -28,13 +27,9 @@ pull:
 bash:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan -s
 
-.PHONY: shell
-shell:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && python bayeslite/shell/scripts/bayeslite -m"'
-
 .PHONY: ipython
 ipython:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && ipython"'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook bash -c "source activate python2 && ipython"
 
 .PHONY: bootstrap
 bootstrap:
@@ -47,13 +42,13 @@ reinstall:
 ## bayeslite
 .PHONY: bayeslite
 bayeslite:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo bash -c "source activate python2 && cd bayeslite && python setup.py install"'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook bash -c "source activate python2 && cd bayeslite && python setup.py install"
 .PHONY: bayeslite-dev
 bayeslite-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'sudo conda uninstall -n python2 --quiet --yes bayeslite'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook conda uninstall -n python2 --quiet --yes bayeslite
 .PHONY: bayeslite-test
 bayeslite-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook start.sh 'bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k \"not __ci_\""'
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
 
 ## cgpm
 .PHONY: cgpm
