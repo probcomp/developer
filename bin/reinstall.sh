@@ -20,13 +20,15 @@ function installProbcompDocker {
     docker-compose -p ${USER} exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_EDGE_PACKAGES_URL && \
         sudo -u jovyan conda install -n python2 --quiet --yes -c probcomp/label/edge -c cidermole -c fritzo -c ursusest \
         --file /tmp/conda_probcomp.txt && \
-        sudo -u jovyan conda remove -n python2 --quiet --yes --force qt pyqt" && \
+        sudo -u jovyan conda remove -n python2 --quiet --yes --force qt pyqt && \
+        sudo -u jovyan fix-permissions $CONDA_DIR" && \
         return 0
 
-  docker-compose -p ${USER} exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
-      sudo -u jovyan conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
-      --file /tmp/conda_probcomp.txt && \
-      sudo -u jovyan conda remove -n python2 --quiet --yes --force qt pyqt"
+    docker-compose -p ${USER} exec notebook bash -c "wget -O /tmp/conda_probcomp.txt --quiet $PROBCOMP_PACKAGES_URL && \
+        sudo -u jovyan conda install -n python2 --quiet --yes -c probcomp -c cidermole -c fritzo -c ursusest \
+        --file /tmp/conda_probcomp.txt && \
+        sudo -u jovyan conda remove -n python2 --quiet --yes --force qt pyqt && \
+        sudo -u jovyan fix-permissions $CONDA_DIR"
 }
 
 ask "reinstall probcomp packages? (notebook container must be running)" && installProbcompDocker
