@@ -7,7 +7,6 @@ services:
       - 8888:8888
     user: root
     environment:
-      CHOWN_CONDA_DIR: 'yes'
       GRANT_SUDO: 'yes'
       NB_UID: ${NB_UID}
     volumes:
