@@ -120,9 +120,7 @@ Releasing software to the [probcomp anaconda.org channel](https://anaconda.org/p
 
 ### Releasing the Docker Image
 
-The `probcomp/notebook:latest` image is automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by adding a tag to the master branch.
-
-Caveat: unfortunately builds are not currently triggered automatically (due to a Docker Hub bug) and must be manually triggered in the [hub dashboard](https://hub.docker.com/r/probcomp/notebook/~/settings/automated-builds/).
+The `probcomp/notebook:latest` and `probcomp/notebook:edge` images are automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by pushing a tag to the master branch.
 
 ## Common Commands
 
