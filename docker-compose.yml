@@ -10,7 +10,6 @@ services:
       GRANT_SUDO: 'yes'
       NB_UID: ${NB_UID}
     volumes:
-      - .:/home/jovyan/developer:rw
       - ../bayeslite:/home/jovyan/bayeslite:rw
       - ../cgpm:/home/jovyan/cgpm:rw
       - ../crosscat:/home/jovyan/crosscat:rw
