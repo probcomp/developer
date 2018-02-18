@@ -14,6 +14,7 @@
 	- [Releasing Conda Packages](#releasing-conda-packages)
 	- [Releasing the Docker Image](#releasing-the-docker-image)
 - [Common Commands](#common-commands)
+	- [Start the developer environment](#start-the-developer-environment)
 	- [Start a bash shell](#start-a-bash-shell)
 	- [Start an ipython shell](#start-an-ipython-shell)
 	- [Pull the latest version of the image (always try this first if you're having issues)](#pull-the-latest-version-of-the-image-always-try-this-first-if-youre-having-issues)
@@ -124,6 +125,12 @@ The `probcomp/notebook:latest` image is automatically built on any commit to the
 Caveat: unfortunately builds are not currently triggered automatically (due to a Docker Hub bug) and must be manually triggered in the [hub dashboard](https://hub.docker.com/r/probcomp/notebook/~/settings/automated-builds/).
 
 ## Common Commands
+
+### Start the developer environment
+
+```
+make up
+```
 
 ### Start a bash shell
 
