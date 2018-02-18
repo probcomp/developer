@@ -5,6 +5,7 @@ services:
     image: probcomp/notebook
     ports:
       - 8888:8888
+    hostname: ${USER}-notebook
     user: root
     environment:
       GRANT_SUDO: 'yes'
