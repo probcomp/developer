@@ -82,3 +82,8 @@ iventure-dev:
 .PHONY: iventure-test
 iventure-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd iventure && python -m pytest --pyargs iventure -k 'not __ci_'"
+
+## tutorials
+.PHONY: tutorials-test
+tutorials-test:
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd tutorials && python -m pytest"
