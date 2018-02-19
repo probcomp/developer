@@ -25,11 +25,11 @@ pull:
 
 .PHONY: bash
 bash:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan -s
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan -s
 
 .PHONY: ipython
 ipython:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && ipython"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && ipython"
 
 .PHONY: bootstrap
 bootstrap:
@@ -42,48 +42,48 @@ reinstall:
 ## bayeslite
 .PHONY: bayeslite
 bayeslite:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd bayeslite && python setup.py install"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && python setup.py install"
 .PHONY: bayeslite-dev
 bayeslite-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan conda uninstall -n python2 --quiet --yes bayeslite
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes bayeslite
 .PHONY: bayeslite-test
 bayeslite-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
 
 ## cgpm
 .PHONY: cgpm
 cgpm:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd cgpm && python setup.py install"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd cgpm && python setup.py install"
 .PHONY: cgpm-dev
 cgpm-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan conda uninstall -n python2 --quiet --yes cgpm
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes cgpm
 .PHONY: cgpm-test
 cgpm-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd cgpm && python -m pytest --pyargs cgpm -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd cgpm && python -m pytest --pyargs cgpm -k 'not __ci_'"
 
 ## crosscat
 .PHONY: crosscat
 crosscat:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd crosscat && python setup.py install"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd crosscat && python setup.py install"
 .PHONY: crosscat-dev
 crosscat-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan conda uninstall -n python2 --quiet --yes crosscat
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes crosscat
 .PHONY: crosscat-test
 crosscat-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd crosscat && python -m pytest --pyargs crosscat"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd crosscat && python -m pytest --pyargs crosscat"
 
 ## iventure
 .PHONY: iventure
 iventure:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd iventure && python setup.py install"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python setup.py install"
 .PHONY: iventure-dev
 iventure-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan conda uninstall -n python2 --quiet --yes iventure
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes iventure
 .PHONY: iventure-test
 iventure-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd iventure && python -m pytest --pyargs iventure -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python -m pytest --pyargs iventure -k 'not __ci_'"
 
 ## tutorials
 .PHONY: tutorials-test
 tutorials-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -u jovyan bash -c "source activate python2 && cd tutorials && python -m pytest"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd tutorials && python -m pytest"
