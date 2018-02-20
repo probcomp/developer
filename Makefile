@@ -48,7 +48,7 @@ bayeslite-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes bayeslite
 .PHONY: bayeslite-test
 bayeslite-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && python -m pytest --pyargs bayeslite -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && bash check.sh"
 
 ## cgpm
 .PHONY: cgpm
@@ -59,7 +59,7 @@ cgpm-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes cgpm
 .PHONY: cgpm-test
 cgpm-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd cgpm && python -m pytest --pyargs cgpm -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd cgpm && bash check.sh"
 
 ## crosscat
 .PHONY: crosscat
@@ -70,7 +70,7 @@ crosscat-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes crosscat
 .PHONY: crosscat-test
 crosscat-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd crosscat && python -m pytest --pyargs crosscat"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd crosscat && bash check.sh"
 
 ## iventure
 .PHONY: iventure
@@ -81,7 +81,7 @@ iventure-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes iventure
 .PHONY: iventure-test
 iventure-test:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python -m pytest --pyargs iventure -k 'not __ci_'"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && bash check.sh"
 
 ## tutorials
 .PHONY: tutorials-test
