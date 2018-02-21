@@ -45,7 +45,7 @@ bayeslite:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && rm -rf build && python setup.py build"
 .PHONY: bayeslite-develop
 bayeslite-develop:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && conda uninstall --quiet --yes bayeslite && cd bayeslite && rm -rf build && python setup.py develop"
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes bayeslite
 .PHONY: bayeslite-install
 bayeslite-install:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && python setup.py install"
@@ -57,7 +57,7 @@ bayeslite-test:
 .PHONY: cgpm
 cgpm:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd cgpm && python setup.py install"
-.PHONY: cgpm-dev
+.PHONY: cgpm-develop
 cgpm-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes cgpm
 .PHONY: cgpm-test
@@ -68,7 +68,7 @@ cgpm-test:
 .PHONY: crosscat
 crosscat:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd crosscat && python setup.py install"
-.PHONY: crosscat-dev
+.PHONY: crosscat-develop
 crosscat-dev:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes crosscat
 .PHONY: crosscat-test
@@ -78,10 +78,13 @@ crosscat-test:
 ## iventure
 .PHONY: iventure
 iventure:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python setup.py install"
-.PHONY: iventure-dev
-iventure-dev:
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && rm -rf build && python setup.py build"
+.PHONY: iventure-develop
+iventure-develop:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes iventure
+.PHONY: iventure-install
+iventure-install:
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python setup.py install"
 .PHONY: iventure-test
 iventure-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && bash check.sh"

@@ -6,7 +6,7 @@
 	- [Starting Your Environment](#starting-your-environment)
 	- [Making Local Changes Take Effect](#making-local-changes-take-effect)
 		- [Enable Development Mode](#enable-development-mode)
-		- [Build/Install](#buildinstall)
+		- [Build](#build)
 - [Running Tests](#running-tests)
 	- [Testing Locally](#testing-locally)
 	- [Testing on Travis](#testing-on-travis)
@@ -78,15 +78,15 @@ To actively develop against one of the [probcomp repos](https://github.com/probc
 
 For the given repo you wish to actively develop against, you'll need to enable development mode for it anytime your notebook container is restarted. This uninstalls the installed conda package and allows you to override it with local sources.
 
-Run `make <REPO_NAME>-dev` to enable development mode:
+Run `make <REPO_NAME>-develop` to enable development mode:
 
 ```
-make bayeslite-dev
+make bayeslite-develop
 ```
 
-#### Build/Install
+#### Build
 
-Build and install from local sources with `make <REPO_NAME>` to make your changes take effect:
+Build local sources with `make <REPO_NAME>` to make your changes take effect:
 
 ```
 make bayeslite
