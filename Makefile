@@ -42,10 +42,13 @@ reinstall:
 ## bayeslite
 .PHONY: bayeslite
 bayeslite:
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && rm -rf build && python setup.py build"
+.PHONY: bayeslite-develop
+bayeslite-develop:
+	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && conda uninstall --quiet --yes bayeslite && cd bayeslite && rm -rf build && python setup.py develop"
+.PHONY: bayeslite-install
+bayeslite-install:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && python setup.py install"
-.PHONY: bayeslite-dev
-bayeslite-dev:
-	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan conda uninstall -n python2 --quiet --yes bayeslite
 .PHONY: bayeslite-test
 bayeslite-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd bayeslite && bash check.sh"
@@ -84,6 +87,6 @@ iventure-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && bash check.sh"
 
 ## tutorials
-.PHONY: tutorials-test
-tutorials-test:
+.PHONY: notebook-test
+notebook-test:
 	@NB_UID=${NB_UID} docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd tutorials && python -m pytest"
