@@ -55,6 +55,14 @@ Start your environment with the `make up` command. Other functionality in this d
 
 ```
 $ make up
+notebook_1  | Enabling develop on: bayeslite
+notebook_1  |   Uninstalling bayeslite conda package
+notebook_1  |   Creating bayeslite.egg-link
+notebook_1  |   Building bayeslite
+notebook_1  | Set username to: jovyan
+notebook_1  | usermod: no changes
+notebook_1  | Set jovyan UID to: 501
+notebook_1  | Granting jovyan sudo access and appending /opt/conda/bin to sudo PATH
 notebook_1  | Execute the command: jupyter notebook
 notebook_1  | [I 07:20:25.408 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
 notebook_1  | [W 07:20:25.630 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
