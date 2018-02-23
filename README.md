@@ -84,7 +84,7 @@ The instructions below assume active development on the [bayeslite](https://gith
 
 #### Enable Development Mode
 
-Development is enabled by default for the `bayeslite` repo. If you wish to add other repos, pass the `DEVELOP_REPOS` variable to your `make up` command. If you've already started your environment and want to add repos, run `make down` first.
+Development is enabled by default for the `bayeslite` repo. If you wish to add other repos, pass the `DEVELOP_REPOS` variable to your `make up` command. You can, of course, alternately edit your [docker-compose.yml](https://github.com/probcomp/developer/blob/master/docker-compose.yml#L11) file directly to pass in different environment vairables. If you've already started your environment and want to add repos, run `make down` first.
 
 ```
 $ make up
