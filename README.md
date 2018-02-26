@@ -24,6 +24,7 @@
 	- [Increasing D4M Resources](#increasing-d4m-resources)
 	- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
     - [Make additional host directories available inside the container](#make-additional-host-directories-available-inside-the-container)
+    - [Using a remote server as a Docker host](#using-a-remote-server-as-a-docker-host)
 
 <!-- /TOC -->
 ## Overview
@@ -191,10 +192,18 @@ The default D4M resource limits are too low for the developer playground. It's r
 
 ### Sharing the same Docker host with multiple developers
 
-Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port in docker-compose.yml.
+Since the `docker-compose.yml` maps port `8888` to the host system, you won't be able to run multiple copies unless you change the port in `docker-compose.yml`.
 
 Additionally, the Makefile automatically prepends your username to container names to avoid namespace collisions.
 
 ### Make additional host directories available inside the container
 
 To make additional host directories available from inside the container add additional entries to the YAML list in `docker-compose.yml` at the keypath `services` `notebook` `volumes`. For more information see the [official Docker documentation for the `volumes` key](https://docs.docker.com/compose/compose-file/#volumes).
+=======
+Additionally, the `Makefile` automatically prepends your username to container names to avoid namespace collisions.
+
+### Using a remote server as a Docker host
+
+If you are using a remote server as a Docker host you will need to ensure that your user is a part of the `docker` group. See the [post-install steps for Linux from the official Docker documentation](https://docs.docker.com/install/linux/linux-postinstall/) for details.
+
+If you are using a remote server as a Docker host and will be using the Jupyter notebook interface you will need to make whichever port is mapped to the remote host system (`8888` by default) accessible by the machine on which you will be running your web browser. The easiest way to do this is via [local port forwarding](https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding#Local_Port_Forwarding).
