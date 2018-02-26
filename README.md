@@ -23,6 +23,7 @@
 - [Docker Tips](#docker-tips)
 	- [Increasing D4M Resources](#increasing-d4m-resources)
 	- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
+    - [Make additional host directories available inside the container](#make-additional-host-directories-available-inside-the-container)
 
 <!-- /TOC -->
 ## Overview
@@ -193,3 +194,7 @@ The default D4M resource limits are too low for the developer playground. It's r
 Since the docker-compose.yml maps port 8888 to the host system, you won't be able to run multiple copies unless you change the port in docker-compose.yml.
 
 Additionally, the Makefile automatically prepends your username to container names to avoid namespace collisions.
+
+### Make additional host directories available inside the container
+
+To make additional host directories available from inside the container add additional entries to the YAML list in `docker-compose.yml` at the keypath `services` `notebook` `volumes`. For more information see the [official Docker documentation for the `volumes` key](https://docs.docker.com/compose/compose-file/#volumes).
