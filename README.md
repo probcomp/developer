@@ -199,7 +199,7 @@ Additionally, the Makefile automatically prepends your username to container nam
 ### Make additional host directories available inside the container
 
 To make additional host directories available from inside the container add additional entries to the YAML list in `docker-compose.yml` at the keypath `services` `notebook` `volumes`. For more information see the [official Docker documentation for the `volumes` key](https://docs.docker.com/compose/compose-file/#volumes).
-=======
+
 Additionally, the `Makefile` automatically prepends your username to container names to avoid namespace collisions.
 
 ### Using a remote server as a Docker host
