@@ -197,4 +197,6 @@ Additionally, the `Makefile` automatically prepends your username to container n
 
 ### Using a remote server as a Docker host
 
-If you are using a remote server as a Docker host you will need to make whichever port is mapped to the remote host system (`8888` by default) to your local machine. The easiest way to do this is via [local port forwarding](https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding#Local_Port_Forwarding).
+If you are using a remote server as a Docker host you will need to ensure that your user is a part of the `docker` group. See the [post-install steps for Linux from the official Docker documentation](https://docs.docker.com/install/linux/linux-postinstall/) for details.
+
+If you are using a remote server as a Docker host and will be using the Jupyter notebook interface you will need to make whichever port is mapped to the remote host system (`8888` by default) accessible by the machine on which you will be running your web browser. The easiest way to do this is via [local port forwarding](https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding#Local_Port_Forwarding).
