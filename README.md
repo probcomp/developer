@@ -140,7 +140,7 @@ Releasing software to the [probcomp anaconda.org channel](https://anaconda.org/p
 
 The `probcomp/notebook:latest` and `probcomp/notebook:edge` images are automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by pushing a tag to the master branch.
 
-Additionally, the `probcomp/notebook:edge` image is built daily by a [travis job](https://travis-ci.org/probcomp/notebook) to ensure that the latest edge packages are available in said image.
+Additionally, the `probcomp/notebook:edge` image is built daily by a [jenkins job](https://probcomp-4.csail.mit.edu/job/notebook-master-crashes/) to ensure that the latest edge packages are available in said image.
 
 ## Common Commands
 
