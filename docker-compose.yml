@@ -2,7 +2,7 @@ version: "2"
 
 services:
   notebook:
-    image: probcomp/notebook
+    image: probcomp/notebook:edge
     ports:
       - 8888:8888
     hostname: ${USER}-notebook
