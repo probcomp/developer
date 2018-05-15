@@ -21,10 +21,11 @@
 	- [Reinstalling the probcomp conda packages](#reinstalling-the-probcomp-conda-packages)
 	- [Stop and remove the notebook container](#stop-and-remove-the-notebook-container)
 - [Docker Tips](#docker-tips)
+	- [Pruning Images and Resources](#pruning-images-and-resources)
 	- [Increasing D4M Resources](#increasing-d4m-resources)
 	- [Sharing the same Docker host with multiple developers](#sharing-the-same-docker-host-with-multiple-developers)
-    - [Make additional host directories available inside the container](#make-additional-host-directories-available-inside-the-container)
-    - [Using a remote server as a Docker host](#using-a-remote-server-as-a-docker-host)
+	- [Make additional host directories available inside the container](#make-additional-host-directories-available-inside-the-container)
+	- [Using a remote server as a Docker host](#using-a-remote-server-as-a-docker-host)
 
 <!-- /TOC -->
 ## Overview
@@ -183,6 +184,10 @@ make down
 ```
 
 ## Docker Tips
+
+### Pruning Images and Resources
+
+Run `docker system prune` to clean up your docker environment. You'll need to run this periodically as your D4M virtual machine or Linux system gets low on disk space. Otherwise, the environment may fail to start or you may see strange behavior (i.e. processes unexpectedly exiting).
 
 ### Increasing D4M Resources
 
