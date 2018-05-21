@@ -203,13 +203,11 @@ If you have sufficient system resources, allocate 32GB of RAM to D4M for optimal
 
 Since the `docker-compose.yml` maps port `8888` to the host system, you won't be able to run multiple copies unless you change the port in `docker-compose.yml`.
 
-Additionally, the Makefile automatically prepends your username to container names to avoid namespace collisions.
+Additionally, the `Makefile` automatically prepends your username to container names to avoid namespace collisions.
 
 ### Make additional host directories available inside the container
 
 To make additional host directories available from inside the container, first `cp docker-compose.override.yml.example docker-compose.override.yml` and then add additional entries to the YAML list in `docker-compose.override.yml` at the keypath `services` `notebook` `volumes`. For more information see the [official Docker documentation for the `volumes` key](https://docs.docker.com/compose/compose-file/#volumes).
-
-Additionally, the `Makefile` automatically prepends your username to container names to avoid namespace collisions.
 
 ### Using a remote server as a Docker host
 
