@@ -1,3 +1,4 @@
 .vagrant
 *.log
 work
+docker-compose.override.yml

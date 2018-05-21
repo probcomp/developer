@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+  notebook:
+    volumes:
+      - ../SomeOtherRepo:/home/jovyan/SomeOtherRepo:rw
+      - /var/tmp/SomeOtherFile:/var/tmp/SomeOtherFile:rw
