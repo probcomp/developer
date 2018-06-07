@@ -187,7 +187,7 @@ make down
 
 ### Pruning Images and Resources
 
-Run `docker system prune` to clean up your docker environment. You'll need to run this periodically as your D4M virtual machine or Linux system gets low on disk space. Otherwise, the environment may fail to start or you may see strange behavior (i.e. processes unexpectedly exiting).
+Run `docker system prune` to clean up your docker environment. You'll need to run this periodically as your D4M virtual machine or Linux system gets low on disk space. Otherwise, the environment may fail to start or you may see strange behavior (e.g. processes unexpectedly exiting).
 
 ### Increasing D4M Resources
 
