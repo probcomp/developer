@@ -71,12 +71,17 @@ crosscat-test:
 .PHONY: iventure
 iventure:
 	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && rm -rf build && python setup.py build"
-.PHONY: iventure-develop
+.PHONY: iventure-install
 iventure-install:
 	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && python setup.py install"
 .PHONY: iventure-test
 iventure-test:
 	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd iventure && bash check.sh"
+
+## loom
+.PHONY: loom
+loom:
+	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "source activate python2 && cd loom && pip install --upgrade ."
 
 ## tutorials
 .PHONY: notebook-test
