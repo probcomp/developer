@@ -139,7 +139,7 @@ Releasing software to the [probcomp anaconda.org channel](https://anaconda.org/p
 
 ### Releasing the Docker Image
 
-The `probcomp/notebook:latest` image is automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by pushing a tag to the master branch.
+The `probcomp/notebook:latest` image is automatically built on any commit to the [probcomp/notebook](https://github.com/probcomp/notebook) repo's master branch. Tagged images are automatically created by pushing a tag to the master branch. For non-trivial changes, you should open a pull request which will trigger a [jenkins job](https://probcomp-4.csail.mit.edu/job/notebook-pull-requests/) to run tests. Note that these tests require substantial computing resources and may take up to an hour to complete. Please use with care.
 
 Additionally, the `probcomp/notebook:edge` image is built daily by a [jenkins job](https://probcomp-4.csail.mit.edu/job/notebook-master-crashes/) to ensure that the latest edge packages are available in said image.
 
