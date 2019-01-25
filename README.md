@@ -1,6 +1,7 @@
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Overview](#overview)
+- [Hosted Service](#hosted-service)
 - [Installation](#installation)
 	- [Bootstrapping Your Environment](#bootstrapping-your-environment)
 	- [Starting Your Environment](#starting-your-environment)
@@ -31,6 +32,25 @@
 ## Overview
 
 This repository contains the developer playground/workstation environment for the [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/) [probcomp/notebook](https://hub.docker.com/r/probcomp/notebook/) image. It contains the full probcomp software stack in addition to enabling active development on the various repositories including [bayeslite](https://github.com/probcomp/bayeslite), [cgpm](https://github.com/probcomp/cgpm), [crosscat](https://github.com/probcomp/crosscat), [iventure](https://github.com/probcomp/iventure) and [venturecxx](https://github.com/probcomp/Venturecxx).
+
+## Hosted Service
+
+In addition to running the software locally as detailed below, you also have the option of using one of the hosted services:
+
+[Probcomp Notebook](https://notebook.gcloud.probcomp.net)
+* Access is controlled by membership in the [probcomp GitHub org](https://github.com/probcomp).
+* 96 CPU cores, 360GB of RAM
+* 10GB persistent disk
+* One hour browser-based inactivity timeout
+* 10 max concurrent instances
+
+[Probcomp Tutorials](https://tutorials.gcloud.probcomp.net)
+* Access is controlled by membership in the [probcomp-tutorials GitHub org](https://github.com/probcomp-tutorials).
+* 30 CPU cores, 16GB of RAM
+* 2GB persistent disk
+* Two hour browser-based inactivity timeout
+* 30 max concurrent instances
+* Intended for teaching workshops or demos, this service is also ideal for using when you don't need the large amount of reserved resources provided by the main service
 
 ## Installation
 
