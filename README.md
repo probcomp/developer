@@ -35,7 +35,7 @@ This repository contains the developer playground/workstation environment for th
 
 ## Hosted Service
 
-In addition to running the software locally as detailed below, you also have the option of using one of the hosted services:
+In addition to running the software locally as detailed below, you also have the option of using the hosted service:
 
 [Probcomp Notebook](https://notebook.gcloud.probcomp.net)
 * Access is controlled by membership in the [probcomp GitHub org](https://github.com/probcomp).
@@ -43,14 +43,6 @@ In addition to running the software locally as detailed below, you also have the
 * 10GB persistent disk
 * One hour browser-based inactivity timeout
 * 10 max concurrent instances
-
-[Probcomp Tutorials](https://tutorials.gcloud.probcomp.net)
-* Access is controlled by membership in the [probcomp-tutorials GitHub org](https://github.com/probcomp-tutorials).
-* 30 CPU cores, 16GB of RAM
-* 2GB persistent disk
-* Two hour browser-based inactivity timeout
-* 30 max concurrent instances
-* Intended for teaching workshops or demos, this service is also ideal for using when you don't need the large amount of reserved resources provided by the main service
 
 ## Installation
 
