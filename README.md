@@ -44,6 +44,8 @@ In addition to running the software locally as detailed below, you also have the
 * One hour browser-based inactivity timeout
 * 10 max concurrent instances
 
+A [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/index.html) mode is also available which supports additional functionality like [system shell terminals](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html). To use lab, change the `tree` in the URL to `lab` after your notebook starts. ex: `https://notebook.gcloud.probcomp.net/user/avinson/tree` -> `https://notebook.gcloud.probcomp.net/user/avinson/lab`.
+
 ## Installation
 
 The docker image and commands in this documentation are tested with docker version `17.12.0-ce` and docker-compose version `1.8.0`. We recommend using these minimum versions.
