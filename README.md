@@ -177,6 +177,12 @@ make bash
 make ipython
 ```
 
+### Start a julia shell
+
+```
+make julia
+```
+
 ### Pull the latest version of the image (always try this first if you're having issues)
 
 ```
