@@ -34,7 +34,7 @@ ipython:
 
 .PHONY: julia
 julia:
-	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "JULIA_NUM_THREADS=$(nproc) julia"
+	@NB_UID=${NB_UID} DEVELOP_REPOS="${DEVELOP_REPOS}" docker-compose -p ${USER} exec notebook sudo -E -u jovyan bash -c "docker-entrypoint.sh julia"
 
 .PHONY: bootstrap
 bootstrap:
