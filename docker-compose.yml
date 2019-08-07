@@ -8,7 +8,6 @@ services:
     hostname: ${USER}-notebook
     user: root
     environment:
-      DEVELOP_REPOS: ${DEVELOP_REPOS}
       GRANT_SUDO: 'yes'
       NB_UID: ${NB_UID}
       SKIP_TUTORIAL_SYNC: 'yes'
